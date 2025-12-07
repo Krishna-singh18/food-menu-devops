@@ -2,7 +2,7 @@ package com.kishan.food_menu_backend.model;
 
 public class FoodItem {
 
-    private int id;
+    private Integer id;
     private String name;
     private double price;
     private String category; // Starter / Main / Dessert / Drinks
@@ -13,7 +13,7 @@ public class FoodItem {
     }
 
     // Parameterized constructor
-    public FoodItem(int id, String name, double price, String category, String type) {
+    public FoodItem(Integer id, String name, double price, String category, String type) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -23,11 +23,11 @@ public class FoodItem {
 
     // ----- Getters & Setters -----
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
