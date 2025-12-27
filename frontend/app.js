@@ -1,5 +1,7 @@
 // Base URL for all backend API calls
-const API_URL = "http://localhost:8080/api/foods";
+// const API_URL = "http://localhost:8080/api/foods";
+const API_URL = "https://food-menu-backend-d53o.onrender.com/api/foods";
+
 
 // Toggle between dark and light theme and persist choice
 function toggleTheme() {
