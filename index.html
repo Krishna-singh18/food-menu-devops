@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <header class="main-header">
+        <button id="theme-toggle-btn" title="Toggle Theme">
+            <img id="theme-toggle-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2300f0ff' d='M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75Zm7.89 3.44a.75.75 0 0 1 0 1.06l-1.59 1.59a.75.75 0 1 1-1.06-1.06l1.59-1.59a.75.75 0 0 1 1.06 0ZM4.56 6.56a.75.75 0 0 1 1.06 0l1.59 1.59a.75.75 0 0 1-1.06 1.06L4.56 7.62a.75.75 0 0 1 0-1.06Zm15.69 7.44a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V15a.75.75 0 0 1 .75-.75ZM3 15.75a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 1.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM16.5 19.5a.75.75 0 0 1 0 1.06l-1.59 1.59a.75.75 0 1 1-1.06-1.06l1.59-1.59a.75.75 0 0 1 1.06 0ZM5.56 21.19a.75.75 0 0 1 0-1.06l1.59-1.59a.75.75 0 1 1 1.06 1.06l-1.59 1.59a.75.75 0 0 1-1.06 0Z'/%3E%3C/svg%3E" alt="Theme Toggle" width="30" height="30">
+        </button>
+    </header>
+
+    <h1>
+        <span class="header-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M11 9H9V2H7V9H5V2H3V9C3 11.21 4.79 13 7 13V22H9V13C11.21 13 13 11.21 13 9V2H11V9ZM19 11V2H17V11H15V2H13V11C13 13.21 14.79 15 17 15V22H19V15C21.21 15 23 13.21 23 11V2H21V11H19Z"/>
+            </svg>
+        </span>
+        Food Menu Management System
+    </h1>
+
+    <div class="app-container">
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('add-tab')">➕ Add Item</button>
+            <button class="tab-btn" onclick="openTab('view-tab')">📋 View Menu</button>
+        </div>
+
+        <div id="add-tab" class="tab-content active-content">
+            <div class="form-container">
+                <h2>Add Food Item</h2>
+
+                <input type="text" id="name" placeholder="Food Name">
+                <input type="number" id="price" placeholder="Price">
+
+                <select id="category">
+                    <option value="Starter">Starter</option>
+                    <option value="Main Course">Main Course</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Drinks">Drinks</option>
+                </select>
+
+                <select id="type">
+                    <option value="VEG">Veg</option>
+                    <option value="NON_VEG">Non-Veg</option>
+                </select>
+
+                <button id="addBtn">Add Food</button>
+            </div>
+        </div>
+
+        <div id="view-tab" class="tab-content">
+            <div class="food-list-area">
+                <h2>Available Food Items</h2>
+                <div id="food-list" class="food-list"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Food Menu System. All rights reserved. | Krishna Singh</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,353 @@
+/* style.css - IT Level Cyberpunk Minimalist with Tabbed Interface */
+
+/* --- Global & Typography Setup --- */
+:root {
+    /* Default (Dark) Theme Variables */
+    --body-bg: #0d1117; 
+    --text-color: #c9d1d9; 
+    --highlight-color: #00f0ff; /* Neon Cyan */
+    --accent-color: #58a6ff; /* Neon Blue */
+    --container-bg: #161b22;
+    --border-color: #30363d;
+    --input-bg: #0d1117; 
+    --input-text: #00f0ff;
+    --add-btn-bg: #4cd964; /* Green */
+    --add-btn-text: #0d1117;
+    --delete-btn-bg: #f85149; /* Red */
+    --card-bg: #0d1117;
+    --card-accent: #58a6ff;
+    --price-color: #ffc107;
+}
+
+body {
+    background-color: var(--body-bg); 
+    font-family: 'Consolas', 'Courier New', monospace; 
+    color: var(--text-color); 
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    transition: background-color 0.5s, color 0.5s; /* Smooth theme transition */
+}
+
+/* --- Light Theme (Activated by JS) --- */
+body.light-theme {
+    --body-bg: #f6f8fa; 
+    --text-color: #24292f; 
+    --highlight-color: #6f42c1; /* Purple */
+    --accent-color: #0366d6; /* Blue */
+    --container-bg: #ffffff;
+    --border-color: #e1e4e8;
+    --input-bg: #f0f3f6; 
+    --input-text: #24292f;
+    --add-btn-bg: #28a745; /* Darker Green */
+    --add-btn-text: #ffffff;
+    --delete-btn-bg: #d73a49; /* Darker Red */
+    --card-bg: #ffffff;
+    --card-accent: #0366d6;
+    --price-color: #e36209;
+}
+
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 2.8em;
+    color: var(--highlight-color); 
+    border-bottom: 2px solid var(--highlight-color);
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5); /* Only apply shadow to dark theme */
+    margin: 0 0 30px 0;
+    padding-bottom: 10px;
+    display: flex; /* Enable flexbox to align icon and text */
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- New Header Icon Styling --- */
+.header-icon {
+    display: inline-block;
+    width: 35px; /* Size the icon */
+    height: 35px;
+    margin-right: 15px;
+    filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.7)); /* Apply neon glow to the icon */
+}
+
+.header-icon svg {
+    fill: var(--highlight-color); /* Apply the neon cyan color */
+    width: 100%;
+    height: 100%;
+}
+
+.light-theme h1 {
+    text-shadow: none; /* Remove shadow in light theme */
+}
+/* Ensure the icon color adapts in light theme */
+.light-theme .header-icon {
+    filter: none;
+}
+.light-theme .header-icon svg {
+    fill: var(--highlight-color); /* Still uses the light-theme highlight color (Purple) */
+}
+
+h2 {
+    text-align: center;
+    color: var(--accent-color); 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin: 10px 0 20px 0;
+}
+
+/* --- Header and Theme Toggle --- */
+.main-header {
+    display: flex;
+    justify-content: flex-end; /* Push the logo to the right */
+    padding: 10px 0;
+}
+
+#theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+#theme-toggle-btn:hover {
+    background: rgba(88, 166, 255, 0.2); /* Subtle hover effect */
+}
+
+#theme-toggle-logo {
+    display: block; /* Ensure no extra space below image */
+    transition: filter 0.5s;
+}
+/* Change the SVG fill color based on the theme */
+.light-theme #theme-toggle-logo path {
+    fill: var(--accent-color);
+}
+.main-header #theme-toggle-logo path {
+    fill: var(--highlight-color);
+}
+
+
+/* --- App Container for Tabs --- */
+.app-container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: var(--container-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Tab Buttons Styling --- */
+.tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    flex-grow: 1;
+    padding: 15px 20px;
+    margin: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.tab-btn:hover {
+    color: var(--highlight-color);
+    background-color: #1f2733; /* Darker on dark background */
+}
+.light-theme .tab-btn:hover {
+    background-color: #f0f0f0; /* Lighter on light background */
+}
+
+.tab-btn.active {
+    color: var(--highlight-color); 
+    border-bottom: 3px solid var(--highlight-color);
+    font-weight: bold;
+}
+
+/* --- Tab Content Area --- */
+.tab-content {
+    display: none; 
+    padding: 20px;
+}
+
+.tab-content.active-content {
+    display: block; 
+}
+
+/* --- Form Container (inside Add Tab) --- */
+.form-container {
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* --- Input Fields --- */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg); 
+    color: var(--input-text); 
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: var(--accent-color); 
+    outline: none;
+    box-shadow: 0 0 5px rgba(88, 166, 255, 0.5);
+}
+.light-theme input:focus, .light-theme select:focus {
+    box-shadow: 0 0 5px rgba(3, 102, 214, 0.5); /* Different shadow for light theme */
+}
+
+
+/* --- Add Button --- */
+#addBtn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: var(--add-btn-bg); 
+    border: none;
+    color: var(--add-btn-text);
+    font-size: 1.1em;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(76, 217, 100, 0.7);
+    transition: background 0.2s, transform 0.1s;
+}
+
+#addBtn:hover {
+    background: #39c74f; /* Slightly darker green */
+    transform: translateY(-1px);
+}
+.light-theme #addBtn {
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.4);
+}
+.light-theme #addBtn:hover {
+    background: #1e7e34;
+}
+
+
+/* --- Food List Layout --- */
+.food-list-area {
+    padding: 0 10px; 
+}
+.food-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* --- Food Card (Data Block Style) --- */
+.food-card {
+    background: var(--card-bg); 
+    padding: 20px;
+    width: 250px; 
+    border-radius: 4px;
+    border: 1px solid var(--border-color); 
+    border-left: 3px solid var(--card-accent); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.3s, border-left-color 0.3s, background-color 0.3s;
+}
+
+.food-card:hover {
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.5);
+    border-left-color: var(--highlight-color); 
+}
+
+.food-card h3 {
+    color: var(--text-color);
+    font-size: 1.3em;
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--border-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.food-card p {
+    margin: 6px 0;
+    font-size: 0.9em;
+}
+
+.food-card p:nth-child(2) { 
+    color: var(--price-color); 
+    font-weight: bold;
+}
+
+/* --- Delete Button (Critical Action) --- */
+/* --- Delete Button (Critical Action) --- */
+.delete-btn {
+    margin-top: 15px;
+    padding: 10px;
+    width: 40px; /* Make it a small, square button */
+    height: 40px;
+    background: var(--delete-btn-bg); 
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
+    text-transform: uppercase;
+    box-shadow: 0 0 8px rgba(248, 81, 73, 0.6);
+    transition: background 0.2s;
+    /* Center the icon */
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; /* Push button to the right */
+    margin-right: 0;
+}
+
+/* Style the SVG inside the button */
+.delete-btn svg {
+    fill: white; /* Icon color */
+    width: 20px; /* Size the icon */
+    height: 20px;
+}
+
+.delete-btn:hover {
+    background: #d73a49;
+}
+.light-theme .delete-btn {
+    box-shadow: none;
+}
+.light-theme .delete-btn:hover {
+    background: #c0303c;
+}
+
+/* --- Footer Styling --- */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8em;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.main-footer p {
+    margin: 0;
+}
